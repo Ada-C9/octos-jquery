@@ -30,12 +30,28 @@ const buildHeaders = () => {
 const buildBody = () => {
   console.log('About to build table body');
   pets.forEach((pet) => {
-    let row = '<tr>';
+    // Start with an emtpy string
+    let row = '';
+
+    // Add in the starting <tr> tag, possibly
+    // with a class
+    if (pet['mammal']) {
+      row += '<tr class="mammal">';
+    } else {
+      row += '<tr>';
+    }
+
+    // Add in each of the table cells for this pet
     for (const key in pet) {
       row += '<td>' + pet[key] + '</td>';
     }
+
+    // Closing </tr> tag
     row += '</tr>';
+
     console.log(row);
+
+    // Add it to the DOM
     $('#pet-table tbody').append(row);
   });
 };
